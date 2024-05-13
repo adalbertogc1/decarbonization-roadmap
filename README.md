@@ -6,8 +6,8 @@ This is a basic but powerful Decarbonization Roadmap Tool. The goal is to predic
 
 The tool allows you to provide two types of uncertainty:
 
-- In the estimation of the end use itself, which can be reduced with an energy audit.
-- In the prediction of the improvement, which comes from the modeling tool.
+- In the estimation of the **end use**, which can be reduced with an energy audit.
+- In the prediction of the **impact on energy reduction**, which comes from the modeling tool.
 
 The blue area is the sum of the two uncertainties. Which allows user to understand how comfortable they are with their current uncertainty.
 
