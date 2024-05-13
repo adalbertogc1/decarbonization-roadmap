@@ -1,0 +1,137 @@
+{
+  "current_conditions": {
+    "year": 2024,
+    "end_uses": {
+      "heating": {
+        "EUI": 100,
+        "uncertainty": 5,
+        "primary_energy": "natural_gas"
+      },
+      "cooling": {
+        "EUI": 50,
+        "uncertainty": 3,
+        "primary_energy": "electricity"
+      },
+      "interior_lighting": {
+        "EUI": 30,
+        "uncertainty": 2,
+        "primary_energy": "electricity"
+      },
+      "exterior_lighting": {
+        "EUI": 20,
+        "uncertainty": 1,
+        "primary_energy": "electricity"
+      },
+      "ventilation": {
+        "EUI": 10,
+        "uncertainty": 4,
+        "primary_energy": "electricity"
+      },
+      "water_heating": {
+        "EUI": 60,
+        "uncertainty": 6,
+        "primary_energy": "natural_gas"
+      },
+      "refrigeration": {
+        "EUI": 0.0,
+        "uncertainty": 8,
+        "primary_energy": "electricity"
+      },
+      "cooking": {
+        "EUI": 70,
+        "uncertainty": 7,
+        "primary_energy": "natural_gas"
+      },
+      "plug_loads": {
+        "EUI": 90,
+        "uncertainty": 9,
+        "primary_energy": "electricity"
+      },
+      "process_loads": {
+        "EUI": 0.0,
+        "uncertainty": 11,
+        "primary_energy": "electricity"
+      }
+    }
+  },
+  "future_years": [
+    {
+      "year": 2030,
+      "end_uses_reduction": {
+        "heating": -10,
+        "cooling": -5,
+        "interior_lighting": -3,
+        "exterior_lighting": -2,
+        "ventilation": -4,
+        "water_heating": -6,
+        "refrigeration": -8,
+        "cooking": -35,
+        "plug_loads": -9,
+        "process_loads": -11
+      },
+      "end_uses_uncertainty": {
+        "heating": 1,
+        "cooling": 1,
+        "interior_lighting": 0.5,
+        "exterior_lighting": 0.5,
+        "ventilation": 1,
+        "water_heating": 1.5,
+        "refrigeration": 1.5,
+        "cooking": 3,
+        "plug_loads": 1,
+        "process_loads": 2
+      },
+      "end_uses_primary_energy": {
+        "heating": "natural_gas",
+        "cooling": "electricity",
+        "interior_lighting": "electricity",
+        "exterior_lighting": "electricity",
+        "ventilation": "electricity",
+        "water_heating": "natural_gas",
+        "refrigeration": "electricity",
+        "cooking": "natural gas",
+        "plug_loads": "electricity",
+        "process_loads": "electricity"
+      }
+    },
+    {
+      "year": 2040,
+      "end_uses_reduction": {
+        "heating": -15,
+        "cooling": -8,
+        "interior_lighting": -5,
+        "exterior_lighting": -3,
+        "ventilation": -6,
+        "water_heating": -10,
+        "refrigeration": -12,
+        "cooking": -10,
+        "plug_loads": -12,
+        "process_loads": -15
+      },
+      "end_uses_uncertainty": {
+        "heating": 2,
+        "cooling": 2,
+        "interior_lighting": 1,
+        "exterior_lighting": 1,
+        "ventilation": 2,
+        "water_heating": 2.5,
+        "refrigeration": 2.5,
+        "cooking": 2.5,
+        "plug_loads": 2,
+        "process_loads": 3
+      },
+      "end_uses_primary_energy": {
+        "heating": "natural_gas",
+        "cooling": "electricity",
+        "interior_lighting": "electricity",
+        "exterior_lighting": "electricity",
+        "ventilation": "electricity",
+        "water_heating": "natural_gas",
+        "refrigeration": "electricity",
+        "cooking": "natural_gas",
+        "plug_loads": "electricity",
+        "process_loads": "electricity"
+      }
+    }
+  ]
+}

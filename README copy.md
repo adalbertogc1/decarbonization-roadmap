@@ -1,22 +1,18 @@
-# 🌱 Decarbonization Roadmap
+# Decarbonization Roadmap Script
 
-This is a basic but powerful Decarbonization Roadmap script. The goal is to predict carbon reductions taking into account uncertainties using Monte Carlo simulation. 🚀 This methodology leverages available information relatved to energy end-use breakdowns and primary energy sources.
+This script employs Monte Carlo simulation to project carbon reductions for the future of a building asset, leveraging reliable data on energy end-use breakdowns and primary energy sources. Additionally, it utilizes estimations of energy reductions per end-use, typically sourced from energy simulation software, to predict the energy reduction per end-use for a given year onwards.
+
+The result is a plot showing the end uses and a decarbonization roadmap from the current year until the year 2050. The predicted emissions is presented as an area to reflect the uncertainty in the provided inputs.
 
 ![End uses](docs/end_uses.png)
 
 ![Decarbonization Roadmap](docs/predicted_emissions.png)
 
-## Inputs 📊
-
-### Current Conditions
-
-### Future Projections 🔮
-
 ## Inputs:
 
 The `decarbonization_info.json` file requires the following information:
 
-### Current Conditions 🏙️
+### Current Conditions:
 
 - **Year (current)**: The current year for which the energy usage data is provided.
 
@@ -35,44 +31,42 @@ The `decarbonization_info.json` file requires the following information:
 
   For each end-use, provide the following:
 
-  - **EUI (kWh/m2/year)**: The energy use intensity or energy consumption per unit area.
+  - **EUI (Energy Use Intensity)**: The energy consumption per unit area (kWh/m2/year).
   - **Uncertainty**: The uncertainty associated with the EUI measurement, typically represented as the standard deviation or a percentage.
   - **Primary Energy**: The primary energy source used to fulfill the energy demand for the respective end-use (e.g., electricity, natural gas).
 
-### Future Projections 🔮
+### Future Projections:
 
 For one or more specific years in the future:
 
 - **Year (future)**: The year for which the projected energy reductions are provided.
 
-- **End Uses Reduction (kWh/m2/year)**: The energy use change in energy consumption compared to the current conditions for each end-use. Negative values indicate a reduction, while positive values indicate an increase.
-- **End Uses Uncertainty (kWh/m2/year)**: The uncertainty associated with the projected energy reductions for each end-use, represented as the standard deviation.
+- **End Uses Reduction (%)**: The percentage change in energy consumption compared to the current conditions for each end-use. Negative values indicate a reduction, while positive values indicate an increase.
+- **End Uses Uncertainty**: The uncertainty associated with the projected energy reductions for each end-use, typically represented as the standard deviation or a percentage.
 - **End Uses Primary Energy**: The primary energy source projected to be used for each end-use in the future year(s).
 
-Make sure to fill these details accurately in `decarbonization_info.json` for reliable projections and simulations.
+Ensure to accurately provide this information in the `decarbonization_info.json` file for reliable projections and simulations.
 
-## How to Use 🛠️
+## How to Use:
 
-1. **Installation**:
+1. **Installation:**
 
    - Install Python modules required by the script:
      ```
      pip install -r requirements.txt
      ```
 
-2. **Execution**:
+2. **Execution:**
 
    - Run the script:
      ```
      python app.py
      ```
 
-3. **Optional Customization**:
-   - Edit the `decarbonization_info.json` file to provide custom information like end-uses, primary energy sources, carbon emission factors, and predictions for end-use changes.
+3. **Optional Customization:**
+   - Optionally, you can edit the `decarbonization_info.json` file to provide custom information such as end-uses, primary energy sources, carbon emission factors, and predictions for end-use changes.
 
-## Example Decarbonization Info 📋
-
-Here's a snippet of what your `decarbonization_info.json` could look like:
+## Example decarbonization_info.json:
 
 ```json
 {
@@ -214,8 +208,6 @@ Here's a snippet of what your `decarbonization_info.json` could look like:
 }
 ```
 
-## License 📜
+## License
 
 This project is licensed under the terms of the MIT license. See the [LICENSE](LICENSE) file for details.
-
-Ready to decode the future of carbon reductions? Let's dive in! 🌍💡
