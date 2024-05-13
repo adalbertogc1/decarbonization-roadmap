@@ -1,6 +1,6 @@
 # 🌱 Decarbonization Roadmap
 
-This is a basic but powerful Decarbonization Roadmap script. The goal is to predict carbon reductions taking into account uncertainties using Monte Carlo simulation. 🚀 This methodology leverages available information relatved to energy end-use breakdowns and primary energy sources.
+This is a basic but powerful Decarbonization Roadmap script. The goal is to predict carbon reductions taking into account uncertainties using Monte Carlo simulation. 🚀 This methodology leverages available information about energy end-use breakdowns and primary energy sources.
 
 ![End uses](docs/end_uses.png)
 
