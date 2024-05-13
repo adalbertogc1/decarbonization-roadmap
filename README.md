@@ -1,11 +1,5 @@
 # 🌱 Decarbonization Roadmap Tool
 
-
-
-_"All models are wrong, but some are useful"   -George E.P. Box_
-
-
-
 This is a basic but powerful Decarbonization Roadmap Tool. The goal is to predict carbon reductions using a bottom-up approach, taking uncertainties into account using Monte Carlo simulation. 🚀 This methodology leverages information about energy end-use breakdowns and primary energy sources.
 
 ![End uses](docs/end_uses.png)
@@ -17,6 +11,7 @@ The tool allows you to provide two classes of uncertainty:
 The blue area is the sum of the two uncertainties, which allows the user to understand how comfortable they are with their current uncertainty.
 
 ![Decarbonization Roadmap](docs/predicted_emissions.png)
+_"All models are wrong, but some are useful"   -George E.P. Box_
 
 
 ## Inputs 📊
