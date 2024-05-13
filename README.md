@@ -1,4 +1,4 @@
-# 🌱 Decarbonization Roadmap
+# 🌱 Decarbonization Roadmap Tool
 
 
 
@@ -45,8 +45,8 @@ Allows to describe current energy use and carbon emissions:
   For each end-use, provide the following:
 
   - **EUI (kWh/m2/year)**: The energy use intensity or consumption per unit area.
-  - **Uncertainty**: The uncertainty associated with the EUI measurement, typically represented as the standard deviation or a percentage.
-  - **Primary Energy**: The primary energy source to fulfil the energy demand for the end-use (e.g., electricity, natural gas).
+  - **Uncertainty**: The uncertainty associated with the EUI measurement is the standard deviation.
+  - **Primary Energy**: The primary energy source to fulfil the energy demand for the end-use. Options are: `electricity`, `natural_gas`, `liquefied_gas`, `diesel` or `solar_pv`.
 
 ### Decarbonization improvements 🔮
 
