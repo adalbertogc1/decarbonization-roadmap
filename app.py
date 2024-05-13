@@ -28,6 +28,10 @@ for year_data in future_years:
     for end_use in end_uses:
         if end_uses[end_use]['EUI'] <= 0.0:
                 continue
+        # Assume all as 0.0 if End use is not provided.
+        if end_use not in reduction:
+            reduction[end_use] = 0.0
+
         reduction_value = reduction[end_use] / 100
         for i in range(future_year - current_year, len(years)):
             end_uses_total[end_use][i] *= (1 + reduction_value)
@@ -79,6 +83,13 @@ for year in range(current_year, 2051):
                     # Skip if EUI is not present
                     if end_uses[end_use]['EUI'] <= 0.0:
                         continue
+
+                    # Assume all as 0.0 if End use is not provided.
+                    if end_use not in reduction:
+                        reduction[end_use] = 0.0
+                        reduction_uncertainty[end_use] = 0.0
+                        reduction_end_uses_primary_energy[end_use] = "electricity"
+
 
                     # Extract emission factor and conversion factor for the end use
                     primary_energy = reduction_end_uses_primary_energy[end_use]
