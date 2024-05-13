@@ -8,12 +8,6 @@ This is a basic but powerful Decarbonization Roadmap script. The goal is to pred
 
 ## Inputs 📊
 
-### Current Conditions
-
-### Future Projections 🔮
-
-## Inputs:
-
 The `decarbonization_info.json` file requires the following information:
 
 ### Current Conditions 🏙️
