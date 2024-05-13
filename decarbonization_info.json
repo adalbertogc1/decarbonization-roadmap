@@ -77,7 +77,7 @@
         "ventilation": 1,
         "water_heating": 1.5,
         "refrigeration": 1.5,
-        "cooking": 3,
+        "cooking": 35.5,
         "plug_loads": 1,
         "process_loads": 2
       },
