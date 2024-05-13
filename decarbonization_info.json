@@ -3,7 +3,7 @@
     "year": 2024,
     "end_uses": {
       "heating": {
-        "EUI": 100,
+        "EUI": 10.0,
         "uncertainty": 5,
         "primary_energy": "natural_gas"
       },
@@ -28,14 +28,14 @@
         "primary_energy": "electricity"
       },
       "water_heating": {
-        "EUI": 60,
+        "EUI": 50,
         "uncertainty": 6,
         "primary_energy": "natural_gas"
       },
       "refrigeration": {
-        "EUI": 0.0,
+        "EUI": 20.0,
         "uncertainty": 8,
-        "primary_energy": "electricity"
+        "primary_energy": "refrigerants"
       },
       "cooking": {
         "EUI": 70,
@@ -43,7 +43,7 @@
         "primary_energy": "natural_gas"
       },
       "plug_loads": {
-        "EUI": 90,
+        "EUI": 20,
         "uncertainty": 9,
         "primary_energy": "electricity"
       },
@@ -57,27 +57,28 @@
   "future_years": [
     {
       "year": 2030,
+      "description": "Induction cooking and efficient lighting.",
       "end_uses_reduction": {
-        "heating": -10,
-        "cooling": -5,
-        "interior_lighting": -3,
-        "exterior_lighting": -2,
-        "ventilation": -4,
-        "water_heating": -6,
-        "refrigeration": -8,
+        "heating": 0.0,
+        "cooling": -5.0,
+        "interior_lighting": -15.0,
+        "exterior_lighting": -7.0,
+        "ventilation": 0.0,
+        "water_heating": 0.0,
+        "refrigeration": 0.0,
         "cooking": -35,
-        "plug_loads": -9,
-        "process_loads": -11
+        "plug_loads": 0.0,
+        "process_loads": 0.0
       },
       "end_uses_uncertainty": {
         "heating": 1,
         "cooling": 1,
-        "interior_lighting": 0.5,
-        "exterior_lighting": 0.5,
+        "interior_lighting": 1,
+        "exterior_lighting": 1,
         "ventilation": 1,
         "water_heating": 1.5,
         "refrigeration": 1.5,
-        "cooking": 35.5,
+        "cooking": 5.5,
         "plug_loads": 1,
         "process_loads": 2
       },
@@ -88,49 +89,50 @@
         "exterior_lighting": "electricity",
         "ventilation": "electricity",
         "water_heating": "natural_gas",
-        "refrigeration": "electricity",
-        "cooking": "natural gas",
+        "refrigeration": "refrigerants",
+        "cooking": "natural_gas",
         "plug_loads": "electricity",
         "process_loads": "electricity"
       }
     },
     {
       "year": 2040,
+      "description": "Installation of solar panels and thermal collectors.",
       "end_uses_reduction": {
-        "heating": -15,
-        "cooling": -8,
-        "interior_lighting": -5,
-        "exterior_lighting": -3,
-        "ventilation": -6,
-        "water_heating": -10,
-        "refrigeration": -12,
-        "cooking": -10,
-        "plug_loads": -12,
-        "process_loads": -15
+        "heating": 0.0,
+        "cooling": 0.0,
+        "interior_lighting": 0.0,
+        "exterior_lighting": 0.0,
+        "ventilation": 0.0,
+        "water_heating": 0.0,
+        "refrigeration": 0.0,
+        "cooking": 0.0,
+        "plug_loads": 0.0,
+        "process_loads": 0.0
       },
       "end_uses_uncertainty": {
-        "heating": 2,
-        "cooling": 2,
+        "heating": 1,
+        "cooling": 1,
         "interior_lighting": 1,
         "exterior_lighting": 1,
-        "ventilation": 2,
-        "water_heating": 2.5,
-        "refrigeration": 2.5,
-        "cooking": 2.5,
-        "plug_loads": 2,
-        "process_loads": 3
+        "ventilation": 1,
+        "water_heating": 1.5,
+        "refrigeration": 1.5,
+        "cooking": 5.5,
+        "plug_loads": 1,
+        "process_loads": 2
       },
       "end_uses_primary_energy": {
         "heating": "natural_gas",
-        "cooling": "electricity",
-        "interior_lighting": "electricity",
-        "exterior_lighting": "electricity",
-        "ventilation": "electricity",
-        "water_heating": "natural_gas",
-        "refrigeration": "electricity",
+        "cooling": "solar_pv",
+        "interior_lighting": "solar_pv",
+        "exterior_lighting": "solar_pv",
+        "ventilation": "solar_pv",
+        "water_heating": "solar_pv",
+        "refrigeration": "refrigerants",
         "cooking": "natural_gas",
-        "plug_loads": "electricity",
-        "process_loads": "electricity"
+        "plug_loads": "solar_pv",
+        "process_loads": "solar_pv"
       }
     }
   ]

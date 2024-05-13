@@ -39,6 +39,7 @@ emissions_samples_per_year = {year: [] for year in range(current_year, 2051)}
 total_emissions_per_year = {year: 0 for year in range(current_year, 2051)}
 reduction = None
 reduction_uncertainty = None
+reduction_end_uses_primary_energy = None
 
 # Iterate over years, interpolate per year using pad method
 for year in range(current_year, 2051):
@@ -59,11 +60,12 @@ for year in range(current_year, 2051):
             samples = np.random.normal(loc=adjusted_end_use, scale=adjusted_uncertainty, size=1000)
             emissions_per_sample = samples * emission_factor * conversion_factor
 
+            
+            total_emissions = np.mean(emissions_per_sample)
             # Append emissions per sample to emissions samples list for the year
             emissions_samples_per_year[year].extend(emissions_per_sample)
 
             # Calculate total emissions for the year by taking into account uncertainty
-            total_emissions = np.mean(emissions_per_sample)
             total_emissions_per_year[year] += total_emissions
     elif year in [year_data['year'] for year_data in future_years]:
         # Iterate over future years
@@ -72,13 +74,14 @@ for year in range(current_year, 2051):
             if year == future_year:
                 reduction = year_data['end_uses_reduction']
                 reduction_uncertainty = year_data["end_uses_uncertainty"]
+                reduction_end_uses_primary_energy = year_data["end_uses_primary_energy"]
                 for end_use in end_uses:
                     # Skip if EUI is not present
                     if end_uses[end_use]['EUI'] <= 0.0:
                         continue
 
                     # Extract emission factor and conversion factor for the end use
-                    primary_energy = end_uses[end_use]['primary_energy']
+                    primary_energy = reduction_end_uses_primary_energy[end_use]
                     emission_factor = conversion_factors[primary_energy]['emission_factors'][str(year)]
                     conversion_factor = conversion_factors[primary_energy]['conversion_factor']
 
@@ -88,11 +91,12 @@ for year in range(current_year, 2051):
                     samples = np.random.normal(loc=adjusted_end_use, scale=adjusted_uncertainty, size=1000)
                     emissions_per_sample = samples * emission_factor * conversion_factor
 
+                    total_emissions = np.mean(emissions_per_sample)
+                    
                     # Append emissions per sample to emissions samples list for the year
                     emissions_samples_per_year[year].extend(emissions_per_sample)
 
                     # Calculate total emissions for the year by taking into account uncertainty
-                    total_emissions = np.mean(emissions_per_sample)
                     total_emissions_per_year[year] += total_emissions
 
     else:
@@ -102,7 +106,7 @@ for year in range(current_year, 2051):
                 continue
 
             # Extract emission factor and conversion factor for the end use
-            primary_energy = end_uses[end_use]['primary_energy']
+            primary_energy = reduction_end_uses_primary_energy[end_use] if reduction_end_uses_primary_energy else end_uses[end_use]['primary_energy']
             emission_factor = conversion_factors[primary_energy]['emission_factors'][str(year)]
             conversion_factor = conversion_factors[primary_energy]['conversion_factor']
 
@@ -112,15 +116,17 @@ for year in range(current_year, 2051):
             samples = np.random.normal(loc=adjusted_end_use, scale=adjusted_uncertainty, size=1000)
             emissions_per_sample = samples * emission_factor * conversion_factor
 
+            total_emissions = np.mean(emissions_per_sample)
+            
             # Append emissions per sample to emissions samples list for the year
             emissions_samples_per_year[year].extend(emissions_per_sample)
 
             # Calculate total emissions for the year by taking into account uncertainty
-            total_emissions = np.mean(emissions_per_sample)
             total_emissions_per_year[year] += total_emissions
 
 # Calculate total uncertainty per year as the standard deviation of total emissions samples
 total_uncertainty_per_year = {year: np.std(emissions_samples) for year, emissions_samples in emissions_samples_per_year.items()}
+
 
 # Create Plot stacked bar plot for Current and expected energy End Uses
 fig = go.Figure()
@@ -136,15 +142,18 @@ for end_use in end_uses_total:
 
 # Update layout for the first subplot
 fig.update_layout(
-    title='Energy End Uses and Decarbonization Roadmap',
+    title='Decarbonization Roadmap Tool',
     xaxis_title='Year',
     yaxis_title='Energy Consumption (kWh/m2/year)',
     yaxis=dict(title='Energy Consumption (kWh/m2/year)', side='left'),
-    barmode='stack'  # Stacked bar plot mode
+    barmode='stack',  # Stacked bar plot mode
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
 )
 
 # Create a secondary y-axis for the second subplot
-fig.update_layout(yaxis2=dict(title='Total Emissions (kg CO2e)', overlaying='y', side='right'))
+fig.update_layout(yaxis2=dict(title='Total Emissions (kg CO2e/m2/year)', overlaying='y', side='right'))
+
+
 
 # Add uncertainty as the width of the area on the secondary y-axis
 fig.add_trace(go.Scatter(x=list(range(current_year, 2051)),
@@ -160,7 +169,7 @@ fig.add_trace(go.Scatter(x=list(range(current_year, 2051)),
                          fill='tonexty',
                          fillcolor='rgba(0,100,80,0.2)',
                          line=dict(width=0),
-                         name='Predicted Total Emissions',
+                         name='Predicted Total Emissions (Scope 1 and 2)',
                          yaxis='y2'))  # Specify secondary y-axis
 
 # Add trace for total emissions with uncertainty as the width of the area
@@ -170,6 +179,39 @@ fig.add_trace(go.Scatter(x=list(range(current_year, 2051)),
                          line=dict(color='blue'),
                          name='2050 Emissions Target',
                          yaxis='y2'))
+
+
+# Add decarbonization events names
+shapes_list = []
+annotations_list = []
+
+for year_data in future_years:
+    shapes_list.append(dict(
+            type="line",
+            x0=year_data['year'],
+            y0=0,
+            x1=year_data['year'],
+            y1=max(total_emissions_per_year.values()),
+            line=dict(
+                color="Red",
+                width=1,
+                dash="dashdot"
+            )
+        ))
+    annotations_list.append(
+        dict(
+            x=year_data['year'],
+            y=max(total_emissions_per_year.values()),
+            xref="x",
+            yref="y",
+            text=year_data['description'],
+            showarrow=True,
+            arrowhead=7,
+            ax=0,
+            ay=-40
+        ))
+    
+fig.update_layout(shapes = shapes_list, annotations = annotations_list)
 
 
 # Show plot

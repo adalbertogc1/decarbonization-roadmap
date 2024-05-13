@@ -1,8 +1,15 @@
 # 🌱 Decarbonization Roadmap
 
-This is a basic but powerful Decarbonization Roadmap script. The goal is to predict carbon reductions taking into account uncertainties using Monte Carlo simulation. 🚀 This methodology leverages available information about energy end-use breakdowns and primary energy sources.
+This is a basic but powerful Decarbonization Roadmap Tool. The goal is to predict carbon reductions from a bottom-up approach while into account uncertainties using Monte Carlo simulation. 🚀 This methodology leverages available information about energy end-use breakdowns and primary energy sources.
 
 ![End uses](docs/end_uses.png)
+
+The tool allows you to provide two types of uncertainty:
+
+- In the estimation of the end use itself, which can be reduced with an energy audit.
+- In the prediction of the improvement, which comes from the modeling tool.
+
+The blue area is the sum of the two uncertainties. Which allows user to understand how comfortable they are with their current uncertainty.
 
 ![Decarbonization Roadmap](docs/predicted_emissions.png)
 
@@ -16,16 +23,16 @@ The `decarbonization_info.json` file requires the following information:
 
 - **End Uses**:
 
-  - **Heating**: Energy consumed for space heating in a building, typically measured in kWh/m2/year.
-  - **Cooling**: Energy consumed for space cooling, including air conditioning, typically measured in kWh/m2/year.
-  - **Interior Lighting**: Energy used to illuminate the interior spaces of a building, encompassing both general lighting and task lighting, typically measured in kWh/m2/year.
-  - **Exterior Lighting**: Energy used to illuminate exterior areas such as parking lots, walkways, and building facades, typically measured in kWh/m2/year.
-  - **Ventilation**: Energy used for providing outdoor air ventilation to maintain indoor air quality and occupant comfort, typically measured in kWh/m2/year.
-  - **Water Heating**: Energy used to heat water for various purposes, including domestic hot water, process water, and space heating through hydronic systems, typically measured in kWh/m2/year.
-  - **Refrigeration**: Energy used for refrigeration systems, encompassing walk-in coolers, refrigerated display cases, and other commercial refrigeration equipment, typically measured in kWh/m2/year.
-  - **Cooking**: Energy used for cooking appliances in commercial kitchens, such as ovens, stoves, grills, fryers, and other cooking equipment, typically measured in kWh/m2/year.
-  - **Plug Loads**: Energy used by miscellaneous electrical equipment like computers, printers, copiers, kitchen appliances, and other plug-in devices, typically measured in kWh/m2/year.
-  - **Process Loads**: Energy used for specific processes or equipment within a building, such as industrial machinery, manufacturing processes, or specialized equipment, typically measured in kWh/m2/year.
+  - **Heating**: Energy consumed for space heating in a building.
+  - **Cooling**: Energy consumed for space cooling, including air conditioning.
+  - **Interior Lighting**: Energy used to illuminate the interior spaces of a building, encompassing both general lighting and task lighting.
+  - **Exterior Lighting**: Energy used to illuminate exterior areas such as parking lots, walkways, and building facades.
+  - **Ventilation**: Energy used for providing outdoor air ventilation to maintain indoor air quality and occupant comfort.
+  - **Water Heating**: Energy used to heat water for various purposes, including domestic hot water, process water, and space heating through hydronic systems.
+  - **Refrigeration**: Energy used for refrigeration systems, encompassing walk-in coolers, refrigerated display cases, and other commercial refrigeration equipment.
+  - **Cooking**: Energy used for cooking appliances in commercial kitchens, such as ovens, stoves, grills, fryers, and other cooking equipment.
+  - **Plug Loads**: Energy used by miscellaneous electrical equipment like computers, printers, copiers, kitchen appliances, and other plug-in devices.
+  - **Process Loads**: Energy used for specific processes or equipment within a building, such as industrial machinery, manufacturing processes, or specialized equipment.
 
   For each end-use, provide the following:
 
@@ -38,6 +45,8 @@ The `decarbonization_info.json` file requires the following information:
 For one or more specific years in the future:
 
 - **Year (future)**: The year for which the projected energy reductions are provided.
+
+- **Description**: Description of the intervention planned.
 
 - **End Uses Reduction (kWh/m2/year)**: The energy use change in energy consumption compared to the current conditions for each end-use. Negative values indicate a reduction, while positive values indicate an increase.
 - **End Uses Uncertainty (kWh/m2/year)**: The uncertainty associated with the projected energy reductions for each end-use, represented as the standard deviation.
@@ -74,7 +83,7 @@ Here's a snippet of what your `decarbonization_info.json` could look like:
     "year": 2024,
     "end_uses": {
       "heating": {
-        "EUI": 100,
+        "EUI": 10.0,
         "uncertainty": 5,
         "primary_energy": "natural_gas"
       },
@@ -99,14 +108,14 @@ Here's a snippet of what your `decarbonization_info.json` could look like:
         "primary_energy": "electricity"
       },
       "water_heating": {
-        "EUI": 60,
+        "EUI": 50,
         "uncertainty": 6,
         "primary_energy": "natural_gas"
       },
       "refrigeration": {
-        "EUI": 0.0,
+        "EUI": 20.0,
         "uncertainty": 8,
-        "primary_energy": "electricity"
+        "primary_energy": "refrigerants"
       },
       "cooking": {
         "EUI": 70,
@@ -114,7 +123,7 @@ Here's a snippet of what your `decarbonization_info.json` could look like:
         "primary_energy": "natural_gas"
       },
       "plug_loads": {
-        "EUI": 90,
+        "EUI": 20,
         "uncertainty": 9,
         "primary_energy": "electricity"
       },
@@ -128,27 +137,28 @@ Here's a snippet of what your `decarbonization_info.json` could look like:
   "future_years": [
     {
       "year": 2030,
+      "description": "Induction cooking and efficient lighting.",
       "end_uses_reduction": {
-        "heating": -10,
-        "cooling": -5,
-        "interior_lighting": -3,
-        "exterior_lighting": -2,
-        "ventilation": -4,
-        "water_heating": -6,
-        "refrigeration": -8,
+        "heating": 0.0,
+        "cooling": -5.0,
+        "interior_lighting": -15.0,
+        "exterior_lighting": -7.0,
+        "ventilation": 0.0,
+        "water_heating": 0.0,
+        "refrigeration": 0.0,
         "cooking": -35,
-        "plug_loads": -9,
-        "process_loads": -11
+        "plug_loads": 0.0,
+        "process_loads": 0.0
       },
       "end_uses_uncertainty": {
         "heating": 1,
         "cooling": 1,
-        "interior_lighting": 0.5,
-        "exterior_lighting": 0.5,
+        "interior_lighting": 1,
+        "exterior_lighting": 1,
         "ventilation": 1,
         "water_heating": 1.5,
         "refrigeration": 1.5,
-        "cooking": 3,
+        "cooking": 5.5,
         "plug_loads": 1,
         "process_loads": 2
       },
@@ -159,49 +169,50 @@ Here's a snippet of what your `decarbonization_info.json` could look like:
         "exterior_lighting": "electricity",
         "ventilation": "electricity",
         "water_heating": "natural_gas",
-        "refrigeration": "electricity",
-        "cooking": "natural gas",
+        "refrigeration": "refrigerants",
+        "cooking": "natural_gas",
         "plug_loads": "electricity",
         "process_loads": "electricity"
       }
     },
     {
       "year": 2040,
+      "description": "Installation of solar panels and thermal collectors.",
       "end_uses_reduction": {
-        "heating": -15,
-        "cooling": -8,
-        "interior_lighting": -5,
-        "exterior_lighting": -3,
-        "ventilation": -6,
-        "water_heating": -10,
-        "refrigeration": -12,
-        "cooking": -10,
-        "plug_loads": -12,
-        "process_loads": -15
+        "heating": 0.0,
+        "cooling": 0.0,
+        "interior_lighting": 0.0,
+        "exterior_lighting": 0.0,
+        "ventilation": 0.0,
+        "water_heating": 0.0,
+        "refrigeration": 0.0,
+        "cooking": 0.0,
+        "plug_loads": 0.0,
+        "process_loads": 0.0
       },
       "end_uses_uncertainty": {
-        "heating": 2,
-        "cooling": 2,
+        "heating": 1,
+        "cooling": 1,
         "interior_lighting": 1,
         "exterior_lighting": 1,
-        "ventilation": 2,
-        "water_heating": 2.5,
-        "refrigeration": 2.5,
-        "cooking": 2.5,
-        "plug_loads": 2,
-        "process_loads": 3
+        "ventilation": 1,
+        "water_heating": 1.5,
+        "refrigeration": 1.5,
+        "cooking": 5.5,
+        "plug_loads": 1,
+        "process_loads": 2
       },
       "end_uses_primary_energy": {
         "heating": "natural_gas",
-        "cooling": "electricity",
-        "interior_lighting": "electricity",
-        "exterior_lighting": "electricity",
-        "ventilation": "electricity",
-        "water_heating": "natural_gas",
-        "refrigeration": "electricity",
+        "cooling": "solar_pv",
+        "interior_lighting": "solar_pv",
+        "exterior_lighting": "solar_pv",
+        "ventilation": "solar_pv",
+        "water_heating": "solar_pv",
+        "refrigeration": "refrigerants",
         "cooking": "natural_gas",
-        "plug_loads": "electricity",
-        "process_loads": "electricity"
+        "plug_loads": "solar_pv",
+        "process_loads": "solar_pv"
       }
     }
   ]
