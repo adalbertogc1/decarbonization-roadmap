@@ -1,23 +1,31 @@
 # 🌱 Decarbonization Roadmap
 
-This is a basic but powerful Decarbonization Roadmap Tool. The goal is to predict carbon reductions from a bottom-up approach while into account uncertainties using Monte Carlo simulation. 🚀 This methodology leverages available information about energy end-use breakdowns and primary energy sources.
+
+
+_"All models are wrong, but some are useful"   -George E.P. Box_
+
+
+
+This is a basic but powerful Decarbonization Roadmap Tool. The goal is to predict carbon reductions using a bottom-up approach, taking uncertainties into account using Monte Carlo simulation. 🚀 This methodology leverages information about energy end-use breakdowns and primary energy sources.
 
 ![End uses](docs/end_uses.png)
+The tool allows you to provide two classes of uncertainty:
 
-The tool allows you to provide two types of uncertainty:
+- In estimating the current **end use**, which can be reduced with an energy audit.
+- In predicting the **impact on energy reduction**, which comes from the modelling tool.
 
-- In the estimation of the **end use**, which can be reduced with an energy audit.
-- In the prediction of the **impact on energy reduction**, which comes from the modeling tool.
-
-The blue area is the sum of the two uncertainties. Which allows user to understand how comfortable they are with their current uncertainty.
+The blue area is the sum of the two uncertainties, which allows the user to understand how comfortable they are with their current uncertainty.
 
 ![Decarbonization Roadmap](docs/predicted_emissions.png)
+
 
 ## Inputs 📊
 
 The `decarbonization_info.json` file requires the following information:
 
-### Current Conditions 🏙️
+### Current State🏙️
+
+Allows to describe current energy use and carbon emissions:
 
 - **Year (current)**: The current year for which the energy usage data is provided.
 
@@ -25,32 +33,32 @@ The `decarbonization_info.json` file requires the following information:
 
   - **Heating**: Energy consumed for space heating in a building.
   - **Cooling**: Energy consumed for space cooling, including air conditioning.
-  - **Interior Lighting**: Energy used to illuminate the interior spaces of a building, encompassing both general lighting and task lighting.
+  - **Interior Lighting**: Energy used to illuminate a building's interior spaces, encompassing general and task lighting.
   - **Exterior Lighting**: Energy used to illuminate exterior areas such as parking lots, walkways, and building facades.
-  - **Ventilation**: Energy used for providing outdoor air ventilation to maintain indoor air quality and occupant comfort.
+  - **Ventilation**: Energy provides outdoor air ventilation to maintain indoor air quality and occupant comfort.
   - **Water Heating**: Energy used to heat water for various purposes, including domestic hot water, process water, and space heating through hydronic systems.
   - **Refrigeration**: Energy used for refrigeration systems, encompassing walk-in coolers, refrigerated display cases, and other commercial refrigeration equipment.
   - **Cooking**: Energy used for cooking appliances in commercial kitchens, such as ovens, stoves, grills, fryers, and other cooking equipment.
-  - **Plug Loads**: Energy used by miscellaneous electrical equipment like computers, printers, copiers, kitchen appliances, and other plug-in devices.
+  - **Plug Loads**: Energy used by miscellaneous electrical equipment, such as computers, printers, copiers, kitchen appliances, and other plug-in devices.
   - **Process Loads**: Energy used for specific processes or equipment within a building, such as industrial machinery, manufacturing processes, or specialized equipment.
 
   For each end-use, provide the following:
 
-  - **EUI (kWh/m2/year)**: The energy use intensity or energy consumption per unit area.
+  - **EUI (kWh/m2/year)**: The energy use intensity or consumption per unit area.
   - **Uncertainty**: The uncertainty associated with the EUI measurement, typically represented as the standard deviation or a percentage.
-  - **Primary Energy**: The primary energy source used to fulfill the energy demand for the respective end-use (e.g., electricity, natural gas).
+  - **Primary Energy**: The primary energy source to fulfil the energy demand for the end-use (e.g., electricity, natural gas).
 
-### Future Projections 🔮
+### Decarbonization improvements 🔮
 
-For one or more specific years in the future:
+Allows to describe decarbonization efforts scheduled in the future:
 
-- **Year (future)**: The year for which the projected energy reductions are provided.
+- **Year (future)**: The year for decarbonization improvements is scheduled.
 
-- **Description**: Description of the intervention planned.
+- **Description**: A brief description of the intervention planned.
 
-- **End Uses Reduction (kWh/m2/year)**: The energy use change in energy consumption compared to the current conditions for each end-use. Negative values indicate a reduction, while positive values indicate an increase.
-- **End Uses Uncertainty (kWh/m2/year)**: The uncertainty associated with the projected energy reductions for each end-use, represented as the standard deviation.
-- **End Uses Primary Energy**: The primary energy source projected to be used for each end-use in the future year(s).
+- **End Uses Reduction (kWh/m2/year)**: The energy use change in energy consumption for each end-use. Negative values indicate a reduction, while positive values indicate an increase. The value of this key is assumed to be `0.0` if not provided. 
+- **End Uses Uncertainty (kWh/m2/year)**: The uncertainty associated with the projected energy reductions for each end-use is represented as the standard deviation.  This key is ignored if the End Uses Reduction is `0.0`.
+- **End Uses Primary Energy**: The primary energy source projected for each end-use in the future year(s). This key is ignored if the End Uses Reduction is `0.0`.
 
 Make sure to fill these details accurately in `decarbonization_info.json` for reliable projections and simulations.
 
